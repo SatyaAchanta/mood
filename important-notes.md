@@ -89,3 +89,23 @@ ORM that helps us to connect to our DB. Prisma is not a DB, instead its just a t
 	- Array of numbers between 0 and 1
 	- Collection of data stores in mathematical representations
 
+
+## Deployment
+
+ - Update build command to `npx prisma generate && next build`
+ - Go to clerk and switch to production mode
+	 - Select `Close Development instance`
+- Go to `planetscale` DB and perform below steps
+	- Make sure `promote to production` is enabled under main branch -> settings icon
+- Under `branches` tab -> select `dev` branch
+	- On right side, add message and hit `Create Deploy Request`
+	- Hit `Deploy Changes` whenever button shows up
+	- Now all changes should be in `main` branch
+	- Now, In `main branch`
+		- Hit `Ready to connect your database`
+			- Select `prisma` application
+			- Give your password `<unique name>`
+			- `planet scale` should be generating `UN & PW`, also `connection string`
+			- copy the connection string and go to `vercel` and paste the string under Environment vars
+			- Repeat the same thing with `.env` files string in your app
+			- **Note**: you dont need to copy key and value separately.  Just copy whole `.env` file content and paste it in `vercel` and boom.
